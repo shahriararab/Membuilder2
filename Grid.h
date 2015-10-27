@@ -41,7 +41,7 @@ public:
     void printGridInFile( string, InputParser );
     void printGridInFileSequential( string, InputParser );  
     void printGridInScreen( );
-    void randomRotateAroundZ(int& x, int& y)
+    void randomRotateAroundZ(double& x, double& y);
     
 };
 

@@ -9,7 +9,7 @@
 
 #include "Grid.h"
 #include <stdlib.h>
-
+#include <math.h>
 #define DEBUG_MODE 0
 
 Grid::Grid( float realWidth, float realHeight, float moleculeWidth, float moleculeHeight, InputParser myInputParser, Distributer* myDistributer, float LayersDistance ){
@@ -252,6 +252,8 @@ Grid::Grid( float realWidth, float realHeight, float moleculeWidth, float molecu
             //cout << numberOfAtoms << endl;
             //cin >> in;
             for( int k = 0; k <numberOfAtoms; k++ ){
+            randomRotateAroundZ(myGridDownLayer.at(i).at(j).atomX.at(k),
+                                    myGridDownLayer.at(i).at(j).atomY.at(k));
                 myGridDownLayer.at(i).at(j).atomX.at(k) += shiftInWidth;
                 myGridDownLayer.at(i).at(j).atomY.at(k) += shiftInHeight;
                 myGridDownLayer.at(i).at(j).atomZ.at(k) -= maxZ;
@@ -286,7 +288,7 @@ Grid::Grid( float realWidth, float realHeight, float moleculeWidth, float molecu
     
 }
 
-void Grid::randomRotateAroundZ(int& x, int& y){
+void Grid::randomRotateAroundZ(double& x, double& y){
     float teta = rand() * 360.0f / RAND_MAX;
     x = cos(teta)*x - sin(teta)*y;
     y = sin(teta)*x + cos(teta)*y;
