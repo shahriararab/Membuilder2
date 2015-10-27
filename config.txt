@@ -1,0 +1,4 @@
+molecules/popg.pdb 32 32 popg
+molecules/popc.pdb 32 32 popc
+*
+8 8 10 10 5
