@@ -272,7 +272,9 @@ Grid::Grid( float realWidth, float realHeight, float moleculeWidth, float molecu
             
             int numberOfAtoms = myGridUpLayer.at(i).at(j).numberOfAtoms;
             for( int k = 0; k < numberOfAtoms; k++ ){
-		myGridUpLayer.at(i).at(j).atomY.at(k) *= -1;
+                randomRotateAroundZ(myGridUpLayer.at(i).at(j).atomX.at(k),
+                                    myGridUpLayer.at(i).at(j).atomY.at(k));
+                myGridUpLayer.at(i).at(j).atomY.at(k) *= -1;
                 myGridUpLayer.at(i).at(j).atomX.at(k) += shiftInWidth;
                 myGridUpLayer.at(i).at(j).atomY.at(k) += shiftInHeight;
                 myGridUpLayer.at(i).at(j).atomZ.at(k) *= -1;
@@ -284,9 +286,10 @@ Grid::Grid( float realWidth, float realHeight, float moleculeWidth, float molecu
     
 }
 
-void Grid::randomRotateAroundZ(Atom *atom){
-    atom->
-
+void Grid::randomRotateAroundZ(int& x, int& y){
+    float teta = rand() * 360.0f / RAND_MAX;
+    x = cos(teta)*x - sin(teta)*y;
+    y = sin(teta)*x + cos(teta)*y;
 }
 
 void Grid::printGridInFile( string destination, InputParser myInputParser ){
